@@ -272,6 +272,8 @@
 			<dict>
 				<key>anchorfields</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>daterange</key>
@@ -449,6 +451,24 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+set tout to 8set t to 0repeat while t &lt; tout	tell application "System Events"		set facetime_running to count (every process whose name is "FaceTime")	end tell	if facetime_running is 1 then		try			tell application "System Events"
+				set frontWindow to front window of application process "FaceTime"				delay .6 # needed to avoid weird flickering stuff. Try increasing if you still see it on your system				click button "Call" of application process "FaceTime"				exit repeat			end tell		end try	else		delay 0.1	end if	set t to t + 0.1end repeat
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>16865643-D0A0-48DA-961D-053770CCBB23</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -468,24 +488,6 @@ end alfred_script</string>
 			<string>E63F1F76-116F-4C39-A91D-7A1BD00B991B</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-set tout to 5set t to 0repeat while t &lt; tout	tell application "System Events"		set facetime_running to count (every process whose name is "FaceTime")	end tell	if facetime_running is 1 then		try			tell application "System Events"
-				set frontWindow to front window of application process "FaceTime"				delay .6 # needed to avoid weird flickering stuff. Try increasing if you still see it on your system				click button "Call" of frontWindow				exit repeat			end tell		end try	else		delay 0.1	end if	set t to t + 0.1end repeat
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>16865643-D0A0-48DA-961D-053770CCBB23</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -546,6 +548,8 @@ end alfred_script</string>
 			<dict>
 				<key>anchorfields</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>daterange</key>
@@ -654,6 +658,8 @@ end alfred_script</string>
 			<dict>
 				<key>anchorfields</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>daterange</key>
@@ -809,7 +815,7 @@ end alfred_script</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>I wanted Alfred to better integrate with continuity features in the Iphone so I made this. Released under Apache License 2.0. Written by @amoose136 2015-2017. Requires Alfred V3.</string>
+	<string>I wanted Alfred to better integrate with continuity features in the iPhone so I made this. Released under Apache License 2.0. Written by @amoose136 2015-2018.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0FAC263F-D24B-4ACB-9D59-07329F75BCD0</key>
@@ -990,7 +996,7 @@ end alfred_script</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>2.2</string>
+	<string>2.21</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
