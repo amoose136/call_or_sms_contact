@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>com.AmosManneschmidt.callorsmscontact</string>
 	<key>category</key>
-	<string>Productivity</string>
+	<string>Internet</string>
 	<key>connections</key>
 	<dict>
 		<key>0FAC263F-D24B-4ACB-9D59-07329F75BCD0</key>
@@ -60,6 +60,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2F166541-DACC-4370-81BF-8AD4764571F4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DD4F6A79-5EB5-4D42-8C8A-934D5706A827</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>42AC172B-3284-46CC-A8B8-B5251D9644DB</key>
 		<array>
 			<dict>
@@ -73,11 +86,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>543F776C-68F3-4717-B11A-76848C11E84A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DD4F6A79-5EB5-4D42-8C8A-934D5706A827</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>5C05FAE4-38A9-4B98-8863-C42A8F5CE7E5</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>76CD24D4-D950-445D-A8FC-D8BD4D390299</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5F11E541-2D4B-4B16-8D27-15CCC0EB7889</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3E36110A-9B17-4E02-AF9D-FA99A6A973F4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -167,7 +206,33 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>16865643-D0A0-48DA-961D-053770CCBB23</string>
+				<string>671ABB72-7DBC-417F-BBA7-E9C68E710CD0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BF74F4C0-C5C8-439F-80AE-05B84814B44E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8D17B46F-4A88-42A0-9501-07FC2FE174FA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D0EA7276-2A9C-4469-8589-8C56510DC31F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8D17B46F-4A88-42A0-9501-07FC2FE174FA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -207,6 +272,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>B855F94C-6DC2-4999-9A4C-3DF7F330CD9F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FAEE1763-A240-484D-A6C4-33BC4CAF3BEC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3E36110A-9B17-4E02-AF9D-FA99A6A973F4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -264,6 +342,40 @@
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>126EBE51-784E-415A-8D65-C85B217DF930</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+
+set contacts_running to false
+if application "Contacts" is running then
+ set contacts_running to true
+else
+ do shell script "open -j /Applications/Contacts.app"
+end if
+
+tell application "Contacts"
+ set q to text ((offset of "Metadata/" in q)+9) thru ((offset of "." in q)-1) of q
+ set phonenumber to value of phone of person id q set phonenumber to item 1 of phonenumber
+end tell
+
+if contacts_running is false
+ tell application "Contacts" to quit
+end if
+
+return phonenumber
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>D5DDD534-314A-473C-A898-AEC5C234FC52</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -362,32 +474,16 @@
 			<dict>
 				<key>applescript</key>
 				<string>on alfred_script(q)
-
-set contacts_running to false
-if application "Contacts" is running then
- set contacts_running to true
-else
- do shell script "open -j /Applications/Contacts.app"
-end if
-
-tell application "Contacts"
- set q to text ((offset of "Metadata/" in q)+9) thru ((offset of "." in q)-1) of q
- set phonenumber to value of phone of person id q set phonenumber to item 1 of phonenumber
-end tell
-
-if contacts_running is false
- tell application "Contacts" to quit
-end if
-
-return phonenumber
+set tout to 8set t to 0repeat while t &lt; tout	tell application "System Events"		set facetime_running to count (every process whose name is "FaceTime")	end tell	if facetime_running is 1 then		try			tell application "System Events"
+				set frontWindow to front window of application process "FaceTime"				delay .6 # needed to avoid weird flickering stuff. Try increasing if you still see it on your system				click button "Call" of application process "FaceTime"				exit repeat			end tell		end try	else		delay 0.1	end if	set t to t + 0.1end repeat
 end alfred_script</string>
 				<key>cachescript</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.applescript</string>
 			<key>uid</key>
-			<string>D5DDD534-314A-473C-A898-AEC5C234FC52</string>
+			<string>16865643-D0A0-48DA-961D-053770CCBB23</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -408,6 +504,29 @@ end alfred_script</string>
 			<string>10C9547D-84B9-43F9-9DA0-6AEC76C58A94</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>open 'facetime-audio://{query}'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E63F1F76-116F-4C39-A91D-7A1BD00B991B</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -451,41 +570,26 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-set tout to 8set t to 0repeat while t &lt; tout	tell application "System Events"		set facetime_running to count (every process whose name is "FaceTime")	end tell	if facetime_running is 1 then		try			tell application "System Events"
-				set frontWindow to front window of application process "FaceTime"				delay .6 # needed to avoid weird flickering stuff. Try increasing if you still see it on your system				click button "Call" of application process "FaceTime"				exit repeat			end tell		end try	else		delay 0.1	end if	set t to t + 0.1end repeat
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>16865643-D0A0-48DA-961D-053770CCBB23</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>68</integer>
 				<key>script</key>
-				<string>open 'tel://{query}'</string>
+				<string>set minor_ver to system attribute "sys2" -- {sys1, sys2, sys3 } = { major, minor, bugfix}if 13 ≤ minor_ver then	tell application "System Events" to tell process "Notification Center"		delay 0.6		click button "Call" of windows	end tellelse	-- I assume this works for 10.13.X and lower, but I haven't tested it.
+	-- I also snagged what is below from an Alfred NSAppleScript that is still 
+    -- Left in the project for refrence.
+	set tout to 8	set t to 0	repeat while t &lt; tout		tell application "System Events"			set facetime_running to count (every process whose name is "FaceTime")		end tell		if facetime_running is 1 then			try				tell application "System Events"					set frontWindow to front window of application process "FaceTime"					delay 0.6 # needed to avoid weird flickering stuff. Try increasing if you still see it on your system					click button "Call" of application process "FaceTime"					exit repeat				end tell			end try		else			delay 0.1		end if		set t to t + 0.1	end repeatend if</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>6</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>E63F1F76-116F-4C39-A91D-7A1BD00B991B</string>
+			<string>671ABB72-7DBC-417F-BBA7-E9C68E710CD0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -540,6 +644,27 @@ end alfred_script</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>5C05FAE4-38A9-4B98-8863-C42A8F5CE7E5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>answer</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Answer Current Call</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2F166541-DACC-4370-81BF-8AD4764571F4</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -656,6 +781,54 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "System Events" to tell process "Notification Center"		if button "Accept" of windows exists then		click button "Accept" of windows	else		return false	end ifend tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>DD4F6A79-5EB5-4D42-8C8A-934D5706A827</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>1179648</integer>
+				<key>hotstring</key>
+				<string>A</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>543F776C-68F3-4717-B11A-76848C11E84A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>anchorfields</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -734,6 +907,44 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>end</string>
+				<key>subtext</key>
+				<string>End or Cancel Current Call</string>
+				<key>text</key>
+				<string>End Call</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>BF74F4C0-C5C8-439F-80AE-05B84814B44E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+tell application "System Events" to tell process "Notification Center"	if button "Decline" of windows exists then		click button "Decline" of windows	else if button "End" of windows exists then		click button "End" of windows	else		click button "Cancel" of windows	end ifend tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>8D17B46F-4A88-42A0-9501-07FC2FE174FA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -795,6 +1006,70 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>14</integer>
+				<key>hotmod</key>
+				<integer>1179648</integer>
+				<key>hotstring</key>
+				<string>E</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>D0EA7276-2A9C-4469-8589-8C56510DC31F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+
+-- {sys1, sys2, sys3 } = { major, minor, bugfix}
+set minor_ver to system attribute "sys2" 
+if 13 ≤ minor_ver then
+
+tell application "System Events" to tell process "Notification Center"
+    if checkbox "Mute" of window 1 exists then
+        click checkbox "Mute" of window 1
+    end if
+end tell
+else 
+tell application "System Events"
+    if checkbox "Mute" of window 1 of application process "FaceTime" exists then
+        click checkbox "Mute" of window 1 of application process "FaceTime"
+    end if
+end tell
+end if
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>3E36110A-9B17-4E02-AF9D-FA99A6A973F4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -813,6 +1088,95 @@ end alfred_script</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>mute</string>
+				<key>subtext</key>
+				<string>Mutes the current call</string>
+				<key>text</key>
+				<string>Mute Call</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>5F11E541-2D4B-4B16-8D27-15CCC0EB7889</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>46</integer>
+				<key>hotmod</key>
+				<integer>1179648</integer>
+				<key>hotstring</key>
+				<string>M</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>FAEE1763-A240-484D-A6C4-33BC4CAF3BEC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>import sys
+import time
+from Quartz.CoreGraphics import * 
+def mouseEvent(type, posx, posy):
+          theEvent = CGEventCreateMouseEvent(None, type, (posx,posy), kCGMouseButtonLeft)
+          CGEventPost(kCGHIDEventTap, theEvent)
+def mousemove(posx,posy):
+          mouseEvent(kCGEventMouseMoved, posx,posy);
+def mouseclick(posx,posy):
+          mouseEvent(kCGEventLeftMouseDown, posx,posy);
+          mouseEvent(kCGEventLeftMouseUp, posx,posy);
+ourEvent = CGEventCreate(None); 
+currentpos=CGEventGetLocation(ourEvent);             # Save current mouse position
+mouseclick(1664,88);
+mousemove(int(currentpos.x),int(currentpos.y));</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F81E39F9-3AB1-4299-91D7-1CDADEB3AC01</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>I wanted Alfred to better integrate with continuity features in the iPhone so I made this. Released under Apache License 2.0. Written by @amoose136 2015-2018.</string>
@@ -821,9 +1185,9 @@ end alfred_script</string>
 		<key>0FAC263F-D24B-4ACB-9D59-07329F75BCD0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>570</integer>
 			<key>ypos</key>
-			<integer>480</integer>
+			<integer>550</integer>
 		</dict>
 		<key>10C9547D-84B9-43F9-9DA0-6AEC76C58A94</key>
 		<dict>
@@ -832,7 +1196,7 @@ end alfred_script</string>
 			<key>note</key>
 			<string>skip confirmation</string>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 			<key>ypos</key>
 			<integer>120</integer>
 		</dict>
@@ -843,7 +1207,7 @@ end alfred_script</string>
 			<key>note</key>
 			<string>show confirmation popup before calling</string>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -854,23 +1218,46 @@ end alfred_script</string>
 			<key>note</key>
 			<string>click call</string>
 			<key>xpos</key>
-			<integer>610</integer>
+			<integer>910</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>90</integer>
 		</dict>
 		<key>1DFF0026-0410-4E09-B829-03EA6203893F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>580</integer>
 			<key>ypos</key>
-			<integer>590</integer>
+			<integer>680</integer>
+		</dict>
+		<key>2F166541-DACC-4370-81BF-8AD4764571F4</key>
+		<dict>
+			<key>note</key>
+			<string>Answers the current call.</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>400</integer>
+		</dict>
+		<key>3E36110A-9B17-4E02-AF9D-FA99A6A973F4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>370</integer>
+			<key>ypos</key>
+			<integer>790</integer>
 		</dict>
 		<key>42AC172B-3284-46CC-A8B8-B5251D9644DB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>580</integer>
 			<key>ypos</key>
-			<integer>700</integer>
+			<integer>810</integer>
+		</dict>
+		<key>543F776C-68F3-4717-B11A-76848C11E84A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>510</integer>
 		</dict>
 		<key>5C05FAE4-38A9-4B98-8863-C42A8F5CE7E5</key>
 		<dict>
@@ -879,9 +1266,27 @@ end alfred_script</string>
 			<key>note</key>
 			<string>skip confirmation</string>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 			<key>ypos</key>
-			<integer>320</integer>
+			<integer>350</integer>
+		</dict>
+		<key>5F11E541-2D4B-4B16-8D27-15CCC0EB7889</key>
+		<dict>
+			<key>note</key>
+			<string>This keyword will mute/unmute the current call. 
+
+* For some reason, on MacOS 10.14 this needs to be used twice (per call) for the GUI mute button symbol to toggle its color. However, based on my testing, it works regardless of the GUI changing. Again, this only happens on the first time 'mute' is invoked.*</string>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>870</integer>
+		</dict>
+		<key>671ABB72-7DBC-417F-BBA7-E9C68E710CD0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>910</integer>
+			<key>ypos</key>
+			<integer>270</integer>
 		</dict>
 		<key>76CD24D4-D950-445D-A8FC-D8BD4D390299</key>
 		<dict>
@@ -890,9 +1295,9 @@ end alfred_script</string>
 			<key>note</key>
 			<string>Remove letters and spaces (leaving numbers)</string>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>310</integer>
+			<integer>320</integer>
 		</dict>
 		<key>86590F04-57CC-4B1E-96FF-A87CC14063DA</key>
 		<dict>
@@ -901,9 +1306,16 @@ end alfred_script</string>
 			<key>note</key>
 			<string>send to Messages.app</string>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>1020</integer>
 			<key>ypos</key>
-			<integer>520</integer>
+			<integer>620</integer>
+		</dict>
+		<key>8D17B46F-4A88-42A0-9501-07FC2FE174FA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>360</integer>
+			<key>ypos</key>
+			<integer>620</integer>
 		</dict>
 		<key>953EA110-8004-4091-9985-F0AF57D696C4</key>
 		<dict>
@@ -912,7 +1324,7 @@ end alfred_script</string>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>190</integer>
 		</dict>
 		<key>9ECF0139-0E66-4EAC-8C62-1D55A508874E</key>
 		<dict>
@@ -921,9 +1333,9 @@ end alfred_script</string>
 			<key>note</key>
 			<string>Remove letters and spaces (leaving numbers)</string>
 			<key>xpos</key>
-			<integer>390</integer>
+			<integer>870</integer>
 			<key>ypos</key>
-			<integer>550</integer>
+			<integer>670</integer>
 		</dict>
 		<key>A2BE7579-08DF-4914-9F8B-59D5C429C3AA</key>
 		<dict>
@@ -932,25 +1344,41 @@ end alfred_script</string>
 			<key>note</key>
 			<string>Extract number</string>
 			<key>xpos</key>
-			<integer>210</integer>
+			<integer>770</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>450</integer>
 		</dict>
 		<key>AA05525E-1106-40EB-8CFC-66CA0AFFF10F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>570</integer>
 			<key>ypos</key>
-			<integer>370</integer>
+			<integer>420</integer>
 		</dict>
 		<key>B855F94C-6DC2-4999-9A4C-3DF7F330CD9F</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>4</integer>
 			<key>xpos</key>
-			<integer>550</integer>
+			<integer>800</integer>
 			<key>ypos</key>
-			<integer>310</integer>
+			<integer>300</integer>
+		</dict>
+		<key>BF74F4C0-C5C8-439F-80AE-05B84814B44E</key>
+		<dict>
+			<key>note</key>
+			<string>The 'end' keyword will also end or cancel depending on which option is available.</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>600</integer>
+		</dict>
+		<key>D0EA7276-2A9C-4469-8589-8C56510DC31F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>710</integer>
 		</dict>
 		<key>D5DDD534-314A-473C-A898-AEC5C234FC52</key>
 		<dict>
@@ -959,9 +1387,9 @@ end alfred_script</string>
 			<key>note</key>
 			<string>Extract number</string>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>400</integer>
 			<key>ypos</key>
-			<integer>40</integer>
+			<integer>20</integer>
 		</dict>
 		<key>D675C802-AD81-43EF-8415-4D4FE2425415</key>
 		<dict>
@@ -970,9 +1398,16 @@ end alfred_script</string>
 			<key>note</key>
 			<string>show confirmation popup before calling</string>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 			<key>ypos</key>
 			<integer>210</integer>
+		</dict>
+		<key>DD4F6A79-5EB5-4D42-8C8A-934D5706A827</key>
+		<dict>
+			<key>xpos</key>
+			<integer>360</integer>
+			<key>ypos</key>
+			<integer>460</integer>
 		</dict>
 		<key>E63F1F76-116F-4C39-A91D-7A1BD00B991B</key>
 		<dict>
@@ -981,9 +1416,25 @@ end alfred_script</string>
 			<key>note</key>
 			<string>Make call button appear</string>
 			<key>xpos</key>
-			<integer>410</integer>
+			<integer>620</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>130</integer>
+		</dict>
+		<key>F81E39F9-3AB1-4299-91D7-1CDADEB3AC01</key>
+		<dict>
+			<key>note</key>
+			<string>This Python script fixes the mute issue but is slow.</string>
+			<key>xpos</key>
+			<integer>370</integer>
+			<key>ypos</key>
+			<integer>980</integer>
+		</dict>
+		<key>FAEE1763-A240-484D-A6C4-33BC4CAF3BEC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>950</integer>
 		</dict>
 		<key>FF8E3BE3-2E94-4801-8A01-9AA8DE17340B</key>
 		<dict>
