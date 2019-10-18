@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.AmosManneschmidt.callorsmscontact</string>
+	<string>com.hirvi74.call-or-sms-contact</string>
 	<key>category</key>
-	<string>Internet</string>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>0FAC263F-D24B-4ACB-9D59-07329F75BCD0</key>
@@ -318,7 +318,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Amos Manneschmidt (@amoose136)</string>
+	<string>Conner Stephens (@Hirvi74) &amp; Amos Manneschmidt (@amoose136)</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
@@ -351,11 +351,19 @@
 				<key>applescript</key>
 				<string>on alfred_script(q)
 
+-- {sys1, sys2, sys3 } = { major, minor, bugfix}
+set minor_ver to system attribute "sys2" 
+
 set contacts_running to false
 if application "Contacts" is running then
  set contacts_running to true
 else
- do shell script "open -j /Applications/Contacts.app"
+	-- Catalina (10.15) moved the location of Contacts.app
+	if 14 ≤ minor_ver then
+		do shell script "open -j /Applications/Contacts.app"
+	else
+		do shell script "open -j /System/Applications/Contacts.app"
+	end if
 end if
 
 tell application "Contacts"
@@ -445,12 +453,16 @@ end alfred_script</string>
 				<false/>
 				<key>keyword</key>
 				<string>call</string>
+				<key>limit</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>scopes</key>
 				<array>
 					<string>~/Library/Application Support/AddressBook</string>
 				</array>
+				<key>sortmode</key>
+				<integer>0</integer>
 				<key>subtext</key>
 				<string>Call using iPhone tethering if available</string>
 				<key>title</key>
@@ -467,7 +479,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>FF8E3BE3-2E94-4801-8A01-9AA8DE17340B</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -619,6 +631,10 @@ end alfred_script</string>
 				<integer>1</integer>
 				<key>matchstring</key>
 				<string>[^0-9]?</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
 				<key>replacestring</key>
 				<string></string>
 			</dict>
@@ -627,7 +643,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>76CD24D4-D950-445D-A8FC-D8BD4D390299</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -722,12 +738,16 @@ end alfred_script</string>
 				<false/>
 				<key>keyword</key>
 				<string>sms</string>
+				<key>limit</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>scopes</key>
 				<array>
 					<string>~/Library/Application Support/AddressBook</string>
 				</array>
+				<key>sortmode</key>
+				<integer>0</integer>
 				<key>subtext</key>
 				<string>Message contact with imessage</string>
 				<key>title</key>
@@ -744,7 +764,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>AA05525E-1106-40EB-8CFC-66CA0AFFF10F</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -880,12 +900,16 @@ end alfred_script</string>
 				<false/>
 				<key>keyword</key>
 				<string>im</string>
+				<key>limit</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>scopes</key>
 				<array>
 					<string>~/Library/Application Support/AddressBook</string>
 				</array>
+				<key>sortmode</key>
+				<integer>0</integer>
 				<key>subtext</key>
 				<string>Message contact with imessage</string>
 				<key>title</key>
@@ -902,7 +926,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>0FAC263F-D24B-4ACB-9D59-07329F75BCD0</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -972,6 +996,10 @@ end alfred_script</string>
 				<integer>1</integer>
 				<key>matchstring</key>
 				<string>[^0-9]?</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
 				<key>replacestring</key>
 				<string></string>
 			</dict>
@@ -980,7 +1008,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>9ECF0139-0E66-4EAC-8C62-1D55A508874E</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1179,7 +1207,13 @@ mousemove(int(currentpos.x),int(currentpos.y));</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>I wanted Alfred to better integrate with continuity features in the iPhone so I made this. Released under Apache License 2.0. Written by @amoose136 2015-2018.</string>
+	<string>I wanted Alfred to better integrate with continuity features in the iPhone so I made this. Released under Apache License 2.0. 
+
+Written by @amoose136 2015-2018.
+
+Modified and maintained by Conner Stephens (@Hirvi74) 2019.
+
+Released under Apache License 2.0.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0FAC263F-D24B-4ACB-9D59-07329F75BCD0</key>
@@ -1446,8 +1480,10 @@ mousemove(int(currentpos.x),int(currentpos.y));</string>
 			<integer>30</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>2.21</string>
+	<string>2.22</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

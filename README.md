@@ -1,7 +1,6 @@
+<p>A short stand-in to add sms and calling support to for MacOS Yosemite and above. Searches through contacts in real time as you type. Excludes contacts with no number. Currently no way to select between multiple numbers for a single contact. Requires Alfred V4.<br></p>
 
-<p>A short stand-in to add sms and calling support to for Yosemite and iOS 8.1. Searches through contacts in real time as you type. Excludes contacts with no number. Currently no way to select between multiple numbers for a single contact. Requires Alfred V3.<br></p>
-
-<p>Released under Apache License 2.0. If you modify this and use it in something splendid I'd appreciate a shout out.</p>
+<p>Released under Apache License 2.0. If you modify this and use it in something splendid we'd appreciate a shout out.</p>
 
 <p>Usage:</p>
 <blockquote>
@@ -34,5 +33,8 @@
 
 <p><b>Known Issues:</b></p>
 
-<p>MacOS 10.14 - The "Mute" command will not reflect that the call is muted in the Notification Center window when invoked for the first time. If you invoke the command twice, then GUI will reflect the change (the "Mute" text color changes from gray to white). I believe this is an issue with Notification Center. </p>
+<p>
+(This no longer appears to be an issue in MacOS 10.15)
+</p>
+<p> MacOS 10.14 - The "Mute" command will not reflect that the call is muted in the Notification Center window when invoked for the first time. If you invoke the command twice, then GUI will reflect the change (the "Mute" text color changes from gray to white). I believe this is an issue with Notification Center. </p>
 
