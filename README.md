@@ -1,3 +1,6 @@
+<p>
+## This Workflow is no longer supported. Please see [Call or Message Contact](https://github.com/c-stephens/call_or_sms_contact) for future updates.
+</p>
 <p>A short stand-in to add sms and calling support to for macOS Yosemite and above. Searches through contacts in real time as you type. Excludes contacts with no number. Currently no way to select between multiple numbers for a single contact. Requires Alfred V4.<br></p>
 
 <p>Released under Apache License 2.0. If you modify this and use it in something splendid we'd appreciate a shout out.</p>
